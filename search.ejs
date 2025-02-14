@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Resumes</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Background animation -->
+    <div class="background"></div>
+
+    <h1>Search Resumes</h1>
+    <form action="/search" method="POST">
+        <input type="text" name="query" placeholder="Search (e.g., Java AND Python)" required>
+        <button type="submit">Search</button>
+    </form>
+    <hr>
+
+    <h2>Results:</h2>
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } else { %>
+        <% if (results.length === 0) { %>
+            <p>No candidate found matching the search criteria.</p>
+        <% } else { %>
+            <div class="result-list">
+                <ul>
+                    <% results.forEach(candidate => { %>
+                        <li>
+                            <strong>Name:</strong> <%= candidate.name %> <br>
+                            <strong>Email:</strong> <%= candidate.email %> <br>
+                            <strong>Skills:</strong> <%= candidate.skills %> <br>
+                            <a href="/download-resume/<%= candidate.id %>" class="btn btn-info">View Resume</a>
+                            
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+    <% } %>
+
+    <script>
+        function viewInExcel(candidateId) {
+            fetch(`/view-in-excel?candidateId=${candidateId}`)
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>

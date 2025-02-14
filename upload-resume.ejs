@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resume</title>
+    <style>
+        /* Container */
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Heading */
+        .container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Form group */
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+
+        /* Labels */
+        .form-group label {
+            width: 50%;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Input fields */
+        .form-group input, 
+        .form-group select {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px #007BFF;
+        }
+
+        /* Gender options */
+        .gender-options {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            width: 65%;
+        }
+
+        .gender-options label {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .submit-btn button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Upload Resume</h2>
+        <form action="/upload-resume" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="gender-section">
+                <label class="gender-label">Gender</label>
+                <div class="gender-option">
+                    <input type="radio" name="gender" id="male" value="Male" required>
+                    <label for="male">Male</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" name="gender" id="female" value="Female" required>
+                    <label for="female">Female</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" name="gender" id="other" value="Other" required>
+                    <label for="other">Other</label>
+                </div>
+            </div>
+            
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone No.</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="experience" class="form-label">Experience (Years)</label>
+                <input type="number" class="form-control" id="experience" name="experience" required>
+            </div>
+            <div class="mb-3">
+                <label for="skills" class="form-label">Skills</label>
+                <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g., JavaScript, Node.js, MySQL" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" name="status" required>
+                    <option value="applied">Applied</option>
+                    <option value="shortlisted">Shortlisted</option>
+                    <option value="interviewed">Interviewed</option>
+                    <option value="offer">Offer</option>
+                    <option value="hired">Hired</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Enter city, state, or country" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="resume" class="form-label">Upload Resume (PDF, DOC, DOCX)</label>
+                <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
